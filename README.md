@@ -3,7 +3,7 @@
 See the [AllAuth.Desktop](https://github.com/bowmark/allauth.desktop) project for
 more details.
 
-This project contains various shared components used within AllAuth.Desktop, in particular
+This project contains various components used within AllAuth.Desktop, in particular
 the crypto implementations.
 
 ## Security
