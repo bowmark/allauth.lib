@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C4F0810E-243E-419C-866B-F0FF5EBB0023}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AllAuth.Lib</RootNamespace>
+    <AssemblyName>AllAuth.Lib</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <ReleaseVersion>1.0.0.0</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\build\debug\AllAuth.Lib\</OutputPath>
+    <IntermediateOutputPath>..\..\build\obj\debug\AllAuth.Lib\</IntermediateOutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\build\release\AllAuth.Lib\</OutputPath>
+    <IntermediateOutputPath>..\..\build\obj\release\AllAuth.Lib\</IntermediateOutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\..\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Numerics">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="APIs\ErrorResponse.cs" />
+    <Compile Include="APIs\Exceptions.cs" />
+    <Compile Include="Base32.cs" />
+    <Compile Include="Crypto\AsymmetricCryptoUtil.cs" />
+    <Compile Include="Crypto\EncryptedData.cs" />
+    <Compile Include="Crypto\EncryptedDataWithKeyPair.cs" />
+    <Compile Include="Crypto\EncryptedDataWithKeyPairSigned.cs" />
+    <Compile Include="Crypto\EncryptedDataWithPassword.cs" />
+    <Compile Include="Crypto\HashUtil.cs" />
+    <Compile Include="Crypto\KeyPair.cs" />
+    <Compile Include="Crypto\PasswordHash.cs" />
+    <Compile Include="Crypto\RandomUtil.cs" />
+    <Compile Include="LinkCodeRegisterInitialOtpDevice.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="SecretShare.cs" />
+    <Compile Include="ServerAPI\ApiClient.cs" />
+    <Compile Include="ServerAPI\ApiClientRequest.cs" />
+    <Compile Include="ServerAPI\DeviceMessages.cs" />
+    <Compile Include="ServerAPI\DeviceToDeviceMessages.cs" />
+    <Compile Include="ServerAPI\Requests\AuthenticatedRequest.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\CheckSecondDeviceRecoveryKey.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\CheckSecondDeviceSetup.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\DeleteDatabaseEntryDeviceSecret.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\GetDatabaseEntryDeviceSecrets.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\GetMessagesLongpoll.cs" />
+    <Compile Include="ManagementAPI\Requests\Authenticated\GetLoginKeyAccountManagement.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\InitiateDeviceLogin.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\GetDatabaseEntries.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\GetDatabaseGroup.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\GetDatabaseGroups.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\RequestKeyVerificationResponse.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\ResetSecondDevice.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\RequestKeyVerification.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\DeleteDatabaseEntry.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\SetDatabaseEntryDeviceSecrets.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\SetDatabaseGroup.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\SetDatabaseMeta.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\GetDatabaseMeta.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\GetDatabaseEntry.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\SetDatabaseEntries.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\Logout.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\SendOtpLoginCode.cs" />
+    <Compile Include="ServerAPI\Requests\Unauthenticated\LoginWithDevice.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\GetLinkedDevice.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\CompleteLink.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\CheckClientLink.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\CreateDatabase.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\SetMessageStatus.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\GetMessages.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\GetMessageStatus.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\SendLinkedDeviceMessage.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\ConfirmSecondDevice.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\UpdateDeviceRecoveryInfo.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\UpdateDatabaseRecoveryInfo.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\UpdateUser.cs" />
+    <Compile Include="ServerAPI\Requests\Request.cs" />
+    <Compile Include="ServerAPI\Requests\Unauthenticated\Login.cs" />
+    <Compile Include="ServerAPI\Requests\Unauthenticated\RegisterComplete.cs" />
+    <Compile Include="ServerAPI\Requests\Unauthenticated\RegisterSecondDevice.cs" />
+    <Compile Include="ServerAPI\Requests\Unauthenticated\LoginWithDatabaseRecoveryKey.cs" />
+    <Compile Include="ManagementAPI\ErrorResponse.cs" />
+    <Compile Include="ManagementAPI\Requests\AuthenticatedRequest.cs" />
+    <Compile Include="ManagementAPI\Requests\Authenticated\Logout.cs" />
+    <Compile Include="ManagementAPI\Requests\Authenticated\GetUser.cs" />
+    <Compile Include="ManagementAPI\Requests\Authenticated\UpdateUser.cs" />
+    <Compile Include="ManagementAPI\Requests\Request.cs" />
+    <Compile Include="ManagementAPI\Requests\Unauthenticated\Login.cs" />
+    <Compile Include="ManagementAPI\Requests\Unauthenticated\RegisterComplete.cs" />
+    <Compile Include="ManagementAPI\Requests\Unauthenticated\Register.cs" />
+    <Compile Include="ManagementAPI\Requests\Unauthenticated\LoginComplete.cs" />
+    <Compile Include="ManagementAPI\Requests\Unauthenticated\LoginWithRecoveryKey.cs" />
+    <Compile Include="ServerAPI\Requests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyVersionInfo.cs" />
+    <Compile Include="ServerAPI\Responses.cs" />
+    <Compile Include="ManagementAPI\ApiClient.cs" />
+    <Compile Include="Utils\Compression.cs" />
+    <Compile Include="Utils\Validation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\..\..\Desktop\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\Desktop\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\..\..\Desktop\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\..\..\Desktop\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
