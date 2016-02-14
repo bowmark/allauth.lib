@@ -68,6 +68,7 @@
     <Compile Include="Crypto\RandomUtil.cs" />
     <Compile Include="LinkCodeRegisterInitialOtpDevice.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="ManagementAPI\Requests\Authenticated\UpdateRecoveryPassword.cs" />
     <Compile Include="SecretShare.cs" />
     <Compile Include="ServerAPI\ApiClient.cs" />
     <Compile Include="ServerAPI\ApiClientRequest.cs" />
@@ -92,7 +93,7 @@
     <Compile Include="ServerAPI\Requests\Authenticated\SetDatabaseGroup.cs" />
     <Compile Include="ServerAPI\Requests\Authenticated\SetDatabaseMeta.cs" />
     <Compile Include="ServerAPI\Requests\Authenticated\GetDatabaseMeta.cs" />
-    <Compile Include="ServerAPI\Requests\Authenticated\GetDatabaseEntry.cs" />
+    <Compile Include="ServerAPI\Requests\Authenticated\GetDatabaseEntryData.cs" />
     <Compile Include="ServerAPI\Requests\Authenticated\SetDatabaseEntries.cs" />
     <Compile Include="ServerAPI\Requests\Authenticated\Logout.cs" />
     <Compile Include="ServerAPI\Requests\Authenticated\SendOtpLoginCode.cs" />
