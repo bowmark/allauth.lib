@@ -4,5 +4,5 @@ shallow_clone: true
 cache:
   - packages -> **\packages.config
 
-build_script: .\build.sh release
-test_script: .\build.sh releaseTest
+build_script: .\build.bat release
+test_script: .\build.bat releaseTest
