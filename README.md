@@ -1,5 +1,8 @@
 # AllAuth.Lib
 
+[![Build status](https://ci.appveyor.com/api/projects/status/uv4ml96t6aji7rlh?svg=true)](https://ci.appveyor.com/project/MB/allauth-lib)
+
+
 See the [AllAuth.Desktop](https://github.com/bowmark/allauth.desktop) project for
 more details.
 
