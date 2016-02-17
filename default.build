@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<project name="AllAuth.Lib">
+
+  <!-- User-definable properties -->
+  <if test="${not property::exists('configuration')}">
+    <property name="configuration" value="Debug" />
+  </if>
+
+  <!-- Internal properties -->
+  <property name="SolutionDir" value="${project::get-base-directory()}"/>
+  <property name="SolutionFile" value="${SolutionDir}/AllAuth.Lib.sln"/>
+  <property name="BuildDir" value="build" />
+  <if test="${platform::is-windows()}">
+    <property name="BuildTool" value="C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe" readonly="true"/>
+  </if>
+  <if test="${platform::is-unix()}">
+    <property name="BuildTool" value="xbuild" readonly="true"/>
+  </if>
+
+  <!--
+    Util Targets
+  -->
+
+  <target name="clean" description="Deletes the build output folder">
+    <delete>
+      <fileset basedir="${BuildDir}">
+        <include name="**\*" />
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="nuget-restore">
+    <exec program="nuget.exe" basedir="tools">
+    <arg value="restore" />
+      <arg path="${SolutionFile}" />
+    </exec>
+  </target>
+
+  <target name="get-version">
+    <property name="VersionProgram" value="1.0.0"/>
+    <property name="VersionFull" value="1.0.0.0"/>
+  </target>
+
+  <target name="set-assembly-version"
+          description="Generates the AssemblyVersionInfo.cs for the project">
+    <!-- Remember to set the version properties before usage -->
+    <!-- Must not be called standalone as it requires some properties set. -->
+    <asminfo output="src/${Project}/Properties/AssemblyVersionInfo.cs" language="CSharp">
+			<attributes>
+				<attribute type="System.Reflection.AssemblyVersionAttribute" value="${VersionFull}" />
+				<attribute type="System.Reflection.AssemblyFileVersionAttribute" value="${VersionFull}"/>
+			</attributes>
+		</asminfo>
+	</target>
+
+  <target name="build-csproj" description="Build a given csproj">
+    <!-- Must not be called standalone as it requires some properties set. -->
+    <exec program="${BuildTool}">
+      <arg path="src/${Project}/${Project}.csproj" />
+      <arg line="/property:Configuration=${configuration}" />
+      <arg value="/target:Rebuild" />
+      <arg value="/verbosity:normal" />
+      <arg value="/nologo" />
+    </exec>
+  </target>
+
+  <target name="debug" depends="nuget-restore">
+    <property name="configuration" value="Debug" />
+    <call target="allauth.lib" />
+  </target>
+
+  <target name="release" depends="nuget-restore">
+    <property name="configuration" value="Release" />
+    <call target="allauth.lib" />
+  </target>
+
+  <target name="releaseTest">
+    <exec program="tools/nunit/nunit3-console.exe">
+      <arg line="build/release/AllAuth.Lib.Tests/AllAuth.Lib.Tests.dll" />
+    </exec>
+  </target>
+
+  <target name="allauth.lib" description="Build the lib">
+    <call target="allauth.lib-prebuild" />
+    <property name="Project" value="AllAuth.Lib"/>
+    <call target="build-csproj" />
+    <property name="Project" value="AllAuth.Lib.Db"/>
+    <call target="build-csproj" />
+    <property name="Project" value="AllAuth.Lib.Db.Connection.Sqlite"/>
+    <call target="build-csproj" />
+    <property name="Project" value="AllAuth.Lib.Db.Sqlite"/>
+    <call target="build-csproj" />
+    <property name="Project" value="AllAuth.Lib.Tests"/>
+    <call target="build-csproj" />
+  </target>
+
+  <target name="allauth.lib-prebuild" depends="">
+    <!-- Uses the same version for all subprojects. -->
+    <property name="Project" value="AllAuth.Lib"/>
+    <call target="get-version" />
+    <call target="set-assembly-version" />
+    <property name="Project" value="AllAuth.Lib.Db"/>
+    <call target="set-assembly-version" />
+    <property name="Project" value="AllAuth.Lib.Db.Connection.Sqlite"/>
+    <call target="set-assembly-version" />
+    <property name="Project" value="AllAuth.Lib.Db.Sqlite"/>
+    <call target="set-assembly-version" />
+  </target>
+
+  <target name="allauth.lib-tests" depends="">
+    <!-- Uses the same version for all subprojects. -->
+    <property name="Project" value="AllAuth.Lib.Tests"/>
+  </target>
+
+</project>

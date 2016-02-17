@@ -13,7 +13,8 @@ namespace AllAuth.Lib.ServerAPI
             NewSecret,
             RequestEntrySecrets,
             SendEntrySecrets,
-            DeleteSecret
+            DeleteSecret,
+            DeleteEntry
         }
 
         public class EnvelopeSerialised
@@ -59,6 +60,12 @@ namespace AllAuth.Lib.ServerAPI
         public class DeleteSecret : IMessage
         {
             public string SecretIdentifier;
+        }
+
+        public class DeleteEntry : IMessage
+        {
+            public string LinkIdentifier;
+            public string EntryIdentifier;
         }
     }
 }

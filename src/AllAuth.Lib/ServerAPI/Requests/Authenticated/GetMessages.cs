@@ -67,6 +67,11 @@ namespace AllAuth.Lib.ServerAPI.Requests.Authenticated
                         JsonConvert.DeserializeObject<DeviceToDeviceMessages.DeleteSecret>(messageEnvelope.Message);
                     break;
 
+                case DeviceToDeviceMessages.Types.DeleteEntry:
+                    deviceMessage =
+                        JsonConvert.DeserializeObject<DeviceToDeviceMessages.DeleteEntry>(messageEnvelope.Message);
+                    break;
+
                 default:
                     // If you're here, you probably just forgot to the new D2D message you created to 
                     // the list above.

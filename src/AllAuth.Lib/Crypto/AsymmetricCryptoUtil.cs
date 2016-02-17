@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using Org.BouncyCastle.Asn1.X9;
@@ -23,7 +24,7 @@ namespace AllAuth.Lib.Crypto
             return GenerateKeyPair(KeyPair.KeyTypeDefault);
         }
 
-        private static KeyPair GenerateKeyPair(KeyPair.KeyTypes type)
+        public static KeyPair GenerateKeyPair(KeyPair.KeyTypes type)
         {
             AsymmetricCipherKeyPair generatedKeyPair;
             switch (type)
@@ -35,7 +36,7 @@ namespace AllAuth.Lib.Crypto
                     generatedKeyPair = GenerateKeyPairRsa();
                     break;
                 default:
-                    return null;
+                    throw new InvalidEnumArgumentException("Invalid key type");
             }
             
             var pubKeyPem = ConvertPublicKeyToPem(generatedKeyPair.Public);
@@ -119,12 +120,16 @@ namespace AllAuth.Lib.Crypto
                     // EC Key
                     signer = SignerUtilities.GetSigner("SHA256withECDSA");
                     break;
+
                 case "1.2.840.113549.1.1.1":
                     // RSA key
                     signer = SignerUtilities.GetSigner("SHA256withRSA");
                     break;
+
                 default:
-                    throw new Exception("Could not handle key type");
+                    throw new ArgumentException(
+                        "Unsupported key type " + privateKeyInfo.PrivateKeyAlgorithm.Algorithm.Id, 
+                        nameof(privateKeyPem));
             }
 
             signer.Init(true, privateKey);
@@ -157,7 +162,9 @@ namespace AllAuth.Lib.Crypto
                     signer = SignerUtilities.GetSigner("SHA256withRSA");
                     break;
                 default:
-                    throw new Exception("Could not handle key type");
+                    throw new ArgumentException(
+                        "Unsupported key type " + publicKeyInfo.AlgorithmID.Algorithm.Id,
+                        nameof(publicKey));
             }
 
             signer.Init(false, publicKey);
@@ -179,7 +186,9 @@ namespace AllAuth.Lib.Crypto
                     // RSA Key
                     return EncryptDataWithPublicKeyRsa(data, (RsaKeyParameters)recipientPublicKey);
                 default:
-                    throw new Exception("Could not handle key type");
+                    throw new ArgumentException(
+                        "Unsupported key type " + publicKeyInfo.AlgorithmID.Algorithm.Id,
+                        nameof(publicKeyPem));
             }
         }
         
@@ -204,7 +213,9 @@ namespace AllAuth.Lib.Crypto
                     // RSA key
                     return DecryptDataWithPrivateKeyRsa(encryptedData, (RsaKeyParameters)privateKey);
                 default:
-                    throw new Exception("Could not handle key type");
+                    throw new ArgumentException(
+                        "Unsupported key type " + privateKeyInfo.PrivateKeyAlgorithm.Algorithm.Id,
+                        nameof(privateKeyPem));
             }
         }
 

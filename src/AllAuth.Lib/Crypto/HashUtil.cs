@@ -57,10 +57,9 @@ namespace AllAuth.Lib.Crypto
         }
 
         /// <summary>
-        /// Generates a hash to be used for the recovery password that is sent to the server. 
-        /// This means we do not have to send the recovery password itself to the server.
+        /// Generates a client-side hash of the recovery password that is sent to the management API. 
         /// </summary>
-        /// <param name="username">The server-unique username</param>
+        /// <param name="username"></param>
         /// <param name="recoveryPassword"></param>
         /// <returns></returns>
         public static string GenerateServerManagerRecoveryPasswordHash(string username, string recoveryPassword)
@@ -73,8 +72,7 @@ namespace AllAuth.Lib.Crypto
         }
 
         /// <summary>
-        /// Generates a hash to be used for the recovery password that is sent to the server. 
-        /// This means we do not have to send the recovery password itself to the server.
+        /// Generates a client-side hash of the recovery password that is sent to the server API.
         /// </summary>
         /// <param name="username"></param>
         /// <param name="recoveryPassword"></param>
@@ -89,8 +87,7 @@ namespace AllAuth.Lib.Crypto
         }
 
         /// <summary>
-        /// Generates a hash to be used for the recovery password that is sent to the server. 
-        /// This means we do not have to send the recovery password itself to the server.
+        /// Generates a client-side hash of the recovery password that is sent to the server API.
         /// </summary>
         /// <param name="username"></param>
         /// <param name="recoveryPassword"></param>
@@ -105,7 +102,8 @@ namespace AllAuth.Lib.Crypto
         }
 
         /// <summary>
-        /// Generates a hash to be used for encrypting the device backup data.
+        /// Generates a client-side hash to be used for encrypting the device backup data.
+        /// This is intended to be stored locally on the second device (phone).
         /// </summary>
         /// <param name="username"></param>
         /// <param name="recoveryPassword"></param>
@@ -120,8 +118,7 @@ namespace AllAuth.Lib.Crypto
         }
 
         /// <summary>
-        /// Generates a hash to be saved on the server, used to confirm validity of the recovery key
-        /// used to encrypt data.
+        /// Generates a client-side hash to be saved by the server, used to confirm validity of the recovery key.
         /// </summary>
         /// <param name="username"></param>
         /// <param name="recoveryPassword"></param>
@@ -140,7 +137,7 @@ namespace AllAuth.Lib.Crypto
         /// transmitted in the clear. 
         /// 
         /// Note that this does NOT use a random salt. These should still be hashed with a random 
-        /// salt before storing on a server.
+        /// salt before storage by a server.
         /// </summary>
         /// <param name="label"></param>
         /// <param name="paddingChar"></param>

@@ -55,7 +55,14 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="CryptoTests.cs" />
+    <Compile Include="Crypto\AsymmetricCryptoUtilTests.cs" />
+    <Compile Include="Crypto\EncryptedDataTests.cs" />
+    <Compile Include="Crypto\EncryptedDataWithKeyPairSignedTests.cs" />
+    <Compile Include="Crypto\EncryptedDataWithKeyPairTests.cs" />
+    <Compile Include="Crypto\EncryptedDataWithPasswordTests.cs" />
+    <Compile Include="Crypto\HashUtilTests.cs" />
+    <Compile Include="Crypto\PasswordHashTests.cs" />
+    <Compile Include="Crypto\RandomUtilTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
