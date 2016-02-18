@@ -14,10 +14,11 @@ namespace AllAuth.Lib.Tests.Crypto
         {
             var encryptedData = new EncryptedDataWithPassword(TestString, TestPassword);
             var encryptedDataString = encryptedData.ToString();
+            
             var decryptedTestString = EncryptedDataWithPassword.DecryptData(TestPassword, encryptedDataString);
             Assert.AreEqual(TestString, decryptedTestString);
         }
-        
+
         [Test]
         public void EncryptedDataWithPasswordBytes()
         {
@@ -25,6 +26,15 @@ namespace AllAuth.Lib.Tests.Crypto
             var encryptedDataString = encryptedData.ToString();
             var decryptedTestBytes = EncryptedDataWithPassword.DecryptDataAsBytes(encryptedDataString, TestPassword);
             Assert.AreEqual(TestString, Encoding.UTF8.GetString(decryptedTestBytes));
+        }
+
+        [Test]
+        public void EncyprtedDataWithPasswordDecrypt()
+        {
+            const string encryptedDataString = "IAAAAG4pxSTP1J4LvdrPEpwmnVtBNfXeOYXreKEuQeMtu8znAFDdm6jl0S1XpDoHHkVWc1IRQH79PnqQYXgeNSCGEGvPrIQXQbtlFotdt3AeWCwKEA==";
+
+            var decryptedTestString = EncryptedDataWithPassword.DecryptData(TestPassword, encryptedDataString);
+            Assert.AreEqual(TestString, decryptedTestString);
         }
     }
 }

@@ -24,5 +24,16 @@ namespace AllAuth.Lib.Tests.Crypto
 
             Assert.AreEqual(TestString, decryptedTestString);
         }
+
+        [Test]
+        public void TestEncryptedDataWithKeyPairSignedRsaDecrypt()
+        {
+            const string encryptedDataString = "AAEAACDp8lQILA/wVpMoNGm2kPsFhNAjO7JtidaSdsRYnjjialMXma1CN1ovh/QRjUbzKNdUnMW6pRwTbCBLjFSUabs0aK0qJ8b0l0Ot2EbY1kHoxnn8uOVkQ9/4g6pwbiwV5EpWoYT7utYSprM8YLJWYCqb+j0b/z1fLBYLdBuTt6+eaY1ucdohBy2lYDaZQFNtepQMNFr4VI/MqeAciAH9ZAsxt1dOjl6KxtUeOgP25MPf18nvfxIWs1VyAdAbSYki60prVRZP+YuXN5hMn/ss18T1SI/vcIn2UUlH/uh2got8j5JYkMwCvONTJX0ZugxN6FsfrWX31RjV6wpBbpwmut0AAQAAj1/cbAjKHydxBbX8NCDCiomn9HqhvLpjBn3EFgRrtc2mCipqFd9/jJ0B1Kwwtwu1cgSW4Q8hDKaTop90tBK2+8118vbIQ13MHObxvy7pO2NTBs/PtI3z5y+ufISMiRA2IrOifeOftlixNQu5TGoHFbEewz99v40TDh8JCIClXLP3SKX2mZr301LNUq6EeimfRzAdpPaw3HMJl8NQGYxzqqujy2AdPHCytb6zexloWq8oqSjNr+To8kov24AuvWBUW9fAAPtIMeFBctFyW2x8dLiScLXI4ad4iIfWbCkbdAkheJNW9R0VJBhKLqT/HknwX7rKrmN+CMw4ijx28WqEKAA51So/HMFZe3bs91oVa65009TVxchVa/SnOnAC867b1Oxrc1Y5QyIoeEK3WG4BFi4=";
+
+            var decryptedTestString = EncryptedDataWithKeyPairSigned.DecryptData(
+                encryptedDataString, RsaPrivateKeyPem, RsaPublicKeyPem);
+
+            Assert.AreEqual(TestString, decryptedTestString);
+        }
     }
 }

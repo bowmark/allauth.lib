@@ -39,5 +39,14 @@ namespace AllAuth.Lib.Tests.Crypto
 
             Assert.AreEqual(TestString, Encoding.UTF8.GetString(decryptedTestBytes));
         }
+
+        [Test]
+        public void TestEncryptedDataWithKeyPairRsaDecrypt()
+        {
+            const string encryptedDataString = "AAEAAIHvW57RC3MbJPipwsh03cCEuVSXBfbUPY5+PD8xhxtmgx6TTxlOs+nNSdtA/VQWV6/B8aeD7/Yrqj4+a6SNTMOXgcGlLUCkxXgw7gBBzmgj2sNYSaFI09Oifqip6FPVS+kVoS//z9hoTZqyxj6eogbou5Ap/nLJbjqZ62cx0g7VmNijzirUMQKAwoc/+h+COQNMOQJa69pPTHUzAakxL4AtwHmKodGS7SXlKM+ZrjMOEOarJ43mXAuOoWsp5uZM7sw72F0TuVtBFH0jVMzzV5UhonZFInltbTPX7CyxmpEX3WJANlpDzHZbYUAouLyXT4USUvA2Br29ouzRsLAM9YgAWY4LBLp0MZGq3NELCEYbGYWBHvuAZaIf3YeooX5sYAg5YQoVAXezD6ULf6qF7Ceb";
+
+            var decryptedTestString = EncryptedDataWithKeyPair.DecryptData(encryptedDataString, RsaPrivateKeyPem);
+            Assert.AreEqual(TestString, decryptedTestString);
+        }
     }
 }
