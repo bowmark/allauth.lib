@@ -1,3 +1,9 @@
+# Abandoned
+
+This project has been abandoned.
+
+---
+
 # AllAuth.Lib
 
 [![Build status](https://ci.appveyor.com/api/projects/status/uv4ml96t6aji7rlh?svg=true)](https://ci.appveyor.com/project/MB/allauth-lib)
